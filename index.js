@@ -10,13 +10,19 @@ const typeDefs = gql`
     skill: String!
   }
 
+  input UserInput {
+     name: String!
+     age: Int!
+     skill: String!
+  }
+
   type Query {
     users: [User]
     user(id: ID!): User
   }
 
   type Mutation {
-    addUser(name: String!, age: Int!, skill:String!): User
+    addUser( input: UserInput!): User
     deleteUser(id: ID!): Boolean
   }
 `;
@@ -33,11 +39,12 @@ const resolvers = {
 
  Mutation: {
   addUser: (_, args) => {
+    const {name, age,skill}=args.input
     const newUser = {
       id: Date.now().toString(),
-      name: args.name,
-      age: args.age,
-      skill: args.skill
+      name,
+      age,
+      skill
     };
 
     users.push(newUser);
