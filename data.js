@@ -4,4 +4,4 @@ const users = [
     {id:"3", name:"Tarek", age:30, skill:"IT Admin"}
 ];
 
-module.exports = users
+module.exports = users;
